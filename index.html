@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>BUSINESS LIFE</title>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+        :root {
+            --bg: #0b101b;
+            --panel: #151e2d;
+            --panel2: #1c293b;
+            --gold: #e8b75a;
+            --text: #f5f6fa;
+            --muted: #8e9bad;
+            --border: #29374b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 22px 16px 35px;
+            background:
+                radial-gradient(
+                    ellipse at 50% -20%,
+                    #31425e 0%,
+                    transparent 55%
+                ),
+                var(--bg);
+            color: var(--text);
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 520px;
+            margin: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 27px;
+        }
+
+        .logo {
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 15px;
+            background: var(--panel2);
+            display: grid;
+            place-items: center;
+            font-size: 23px;
+            border: 1px solid var(--border);
+        }
+
+        .welcome {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin: 0 0 8px;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .balance {
+            background:
+                linear-gradient(135deg, #263b55, #172337);
+            border: 1px solid #405673;
+            border-radius: 23px;
+            padding: 21px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance::after {
+            content: "₿";
+            position: absolute;
+            right: 17px;
+            top: 20px;
+            font-size: 60px;
+            color: rgba(255,255,255,.05);
+            font-weight: 900;
+        }
+
+        .balance-label {
+            color: #bdc9d8;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+        }
+
+        .balance-value {
+            color: var(--gold);
+            font-size: 31px;
+            font-weight: 900;
+            margin: 12px 0 7px;
+        }
+
+        .balance-note {
+            color: #a8b6c8;
+            font-size: 11px;
+        }
+
+        .section-title {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            margin: 27px 2px 13px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 19px;
+            padding: 17px;
+            min-height: 125px;
+        }
+
+        .card-icon {
+            font-size: 27px;
+            margin-bottom: 13px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .card-description {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 9px;
+            color: var(--gold);
+            background: rgba(232,183,90,.1);
+            border: 1px solid rgba(232,183,90,.2);
+            border-radius: 20px;
+            padding: 5px 8px;
+        }
+
+        .info {
+            margin-top: 22px;
+            padding: 15px;
+            border-radius: 17px;
+            background: #111a28;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .close-button {
+            width: 100%;
+            padding: 16px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 15px;
+            background: var(--gold);
+            color: #18202c;
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        .footer {
+            text-align: center;
+            color: #59677a;
+            font-size: 10px;
+            margin-top: 22px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="logo">BUSINESS LIFE</div>
+        <div class="avatar">🏙️</div>
+    </div>
+
+    <h1 class="welcome" id="greeting">
+        Построй свою империю
+    </h1>
+
+    <div class="subtitle">
+        Твоя история. Твои решения. Твой бизнес.
+    </div>
+
+    <div class="balance">
+        <div class="balance-label">
+            ИГРОВОЙ БАЛАНС
+        </div>
+
+        <div class="balance-value">
+            15 000
+        </div>
+
+        <div class="balance-note">
+            Демонстрационный баланс интерфейса
+        </div>
+    </div>
+
+    <div class="section-title">
+        ТВОЯ ИМПЕРИЯ
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="card-icon">💼</div>
+            <div class="card-title">Карьера</div>
+            <div class="card-description">
+                Работай и получай зарплату
+            </div>
+            <div class="status">РАЗВИВАЙСЯ</div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🏢</div>
+            <div class="card-title">Бизнес</div>
+            <div class="card-description">
+                Покупай предприятия
+            </div>
+            <div class="status">ИНВЕСТИРУЙ</div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🚘</div>
+            <div class="card-title">Автопарк</div>
+            <div class="card-description">
+                Собирай коллекцию машин
+            </div>
+            <div class="status">КОЛЛЕКЦИЯ</div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🏠</div>
+            <div class="card-title">Недвижимость</div>
+            <div class="card-description">
+                Приобретай новые владения
+            </div>
+            <div class="status">СОБСТВЕННОСТЬ</div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🏦</div>
+            <div class="card-title">Банк</div>
+            <div class="card-description">
+                Управляй игровыми средствами
+            </div>
+            <div class="status">ФИНАНСЫ</div>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🏆</div>
+            <div class="card-title">Рейтинг</div>
+            <div class="card-description">
+                Поднимайся в таблице игроков
+            </div>
+            <div class="status">ЛИДЕРСТВО</div>
+        </div>
+
+    </div>
+
+    <div class="info">
+        Это первая версия Mini App. Сейчас она отвечает за внешний
+        интерфейс. Реальный баланс, покупки и управление имуществом
+        пока выполняются через команды Telegram-бота.
+    </div>
+
+    <button class="close-button" id="close">
+        ЗАКРЫТЬ ПРИЛОЖЕНИЕ
+    </button>
+
+    <div class="footer">
+        BUSINESS LIFE · ECONOMIC SIMULATOR
+    </div>
+
+</div>
+
+<script>
+    const tg = window.Telegram?.WebApp;
+
+    if (tg) {
+        tg.ready();
+        tg.expand();
+
+        if (tg.setHeaderColor) {
+            tg.setHeaderColor("#0b101b");
+        }
+
+        if (tg.setBackgroundColor) {
+            tg.setBackgroundColor("#0b101b");
+        }
+
+        const user = tg.initDataUnsafe?.user;
+
+        if (user?.first_name) {
+            document.getElementById("greeting").textContent =
+                "Привет, " + user.first_name + "!";
+        }
+
+        document.getElementById("close").onclick = () => {
+            tg.close();
+        };
+    } else {
+        document.getElementById("close").onclick = () => {
+            window.history.back();
+        };
+    }
+</script>
+
+</body>
+</html>
