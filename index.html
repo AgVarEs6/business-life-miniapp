@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0b101b">
 
     <title>BUSINESS LIFE</title>
 
@@ -18,6 +19,8 @@
             --text: #f5f6fa;
             --muted: #8e9bad;
             --border: #29374b;
+            --green: #64d69a;
+            --red: #ff7777;
         }
 
         * {
@@ -28,11 +31,7 @@
             margin: 0;
             padding: 22px 16px 35px;
             background:
-                radial-gradient(
-                    ellipse at 50% -20%,
-                    #31425e 0%,
-                    transparent 55%
-                ),
+                radial-gradient(ellipse at 50% -20%, #31425e 0%, transparent 55%),
                 var(--bg);
             color: var(--text);
             font-family: Arial, sans-serif;
@@ -73,6 +72,7 @@
             font-weight: 800;
             line-height: 1.15;
             margin: 0 0 8px;
+            overflow-wrap: anywhere;
         }
 
         .subtitle {
@@ -82,12 +82,11 @@
         }
 
         .balance {
-            background:
-                linear-gradient(135deg, #263b55, #172337);
+            background: linear-gradient(135deg, #263b55, #172337);
             border: 1px solid #405673;
             border-radius: 23px;
             padding: 21px;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             position: relative;
             overflow: hidden;
         }
@@ -113,11 +112,40 @@
             font-size: 31px;
             font-weight: 900;
             margin: 12px 0 7px;
+            overflow-wrap: anywhere;
         }
 
         .balance-note {
             color: #a8b6c8;
             font-size: 11px;
+        }
+
+        .mini-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .mini-stat {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 15px;
+        }
+
+        .mini-stat-label {
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .mini-stat-value {
+            color: var(--text);
+            font-size: 19px;
+            font-weight: 800;
+            overflow-wrap: anywhere;
         }
 
         .section-title {
@@ -170,6 +198,53 @@
             padding: 5px 8px;
         }
 
+        .leaderboard {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 19px;
+            padding: 16px;
+        }
+
+        .player-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .player-row:last-child {
+            border-bottom: none;
+        }
+
+        .player-left {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-width: 0;
+        }
+
+        .player-place {
+            color: var(--gold);
+            font-weight: 900;
+            font-size: 13px;
+            min-width: 22px;
+        }
+
+        .player-name {
+            font-size: 13px;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        .player-money {
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
         .info {
             margin-top: 22px;
             padding: 15px;
@@ -179,6 +254,29 @@
             color: var(--muted);
             font-size: 11px;
             line-height: 1.6;
+        }
+
+        .connection {
+            margin-top: 13px;
+            padding: 12px 14px;
+            border-radius: 13px;
+            background: rgba(100,214,154,.08);
+            border: 1px solid rgba(100,214,154,.2);
+            color: var(--green);
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .connection.error {
+            background: rgba(255,119,119,.08);
+            border-color: rgba(255,119,119,.2);
+            color: var(--red);
+        }
+
+        .connection.loading {
+            background: rgba(232,183,90,.08);
+            border-color: rgba(232,183,90,.2);
+            color: var(--gold);
         }
 
         .close-button {
@@ -191,6 +289,11 @@
             color: #18202c;
             font-size: 14px;
             font-weight: 900;
+            cursor: pointer;
+        }
+
+        .close-button:active {
+            transform: scale(.98);
         }
 
         .footer {
@@ -199,6 +302,13 @@
             font-size: 10px;
             margin-top: 22px;
             letter-spacing: 1px;
+        }
+
+        .empty {
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+            padding: 15px 0;
         }
     </style>
 </head>
@@ -220,25 +330,28 @@
     </div>
 
     <div class="balance">
-        <div class="balance-label">
-            ИГРОВОЙ БАЛАНС
-        </div>
-
-        <div class="balance-value">
-            15 000
-        </div>
-
-        <div class="balance-note">
-            Демонстрационный баланс интерфейса
+        <div class="balance-label">ИГРОВОЙ БАЛАНС</div>
+        <div class="balance-value" id="balance">Загрузка...</div>
+        <div class="balance-note" id="balance-note">
+            Получаем данные твоего аккаунта
         </div>
     </div>
 
-    <div class="section-title">
-        ТВОЯ ИМПЕРИЯ
+    <div class="mini-stats">
+        <div class="mini-stat">
+            <div class="mini-stat-label">В БАНКЕ</div>
+            <div class="mini-stat-value" id="bank-balance">—</div>
+        </div>
+
+        <div class="mini-stat">
+            <div class="mini-stat-label">РЕПУТАЦИЯ</div>
+            <div class="mini-stat-value" id="reputation">—</div>
+        </div>
     </div>
+
+    <div class="section-title">ТВОЯ ИМПЕРИЯ</div>
 
     <div class="grid">
-
         <div class="card">
             <div class="card-icon">💼</div>
             <div class="card-title">Карьера</div>
@@ -292,13 +405,22 @@
             </div>
             <div class="status">ЛИДЕРСТВО</div>
         </div>
+    </div>
 
+    <div class="section-title">ТОП ИГРОКОВ</div>
+
+    <div class="leaderboard" id="leaderboard">
+        <div class="empty">Загружаем рейтинг...</div>
+    </div>
+
+    <div class="connection loading" id="connection">
+        Подключаемся к серверу...
     </div>
 
     <div class="info">
-        Это первая версия Mini App. Сейчас она отвечает за внешний
-        интерфейс. Реальный баланс, покупки и управление имуществом
-        пока выполняются через команды Telegram-бота.
+        Твои игровые данные загружаются с сервера BUSINESS LIFE.
+        Баланс и рейтинг синхронизируются с базой данных.
+        Игровые действия пока доступны через Telegram-бота.
     </div>
 
     <button class="close-button" id="close">
@@ -312,9 +434,138 @@
 </div>
 
 <script>
+    const API_BASE = "https://business-life-api.onrender.com";
+
     const tg = window.Telegram?.WebApp;
 
-    if (tg) {
+    const elements = {
+        greeting: document.getElementById("greeting"),
+        balance: document.getElementById("balance"),
+        balanceNote: document.getElementById("balance-note"),
+        bankBalance: document.getElementById("bank-balance"),
+        reputation: document.getElementById("reputation"),
+        leaderboard: document.getElementById("leaderboard"),
+        connection: document.getElementById("connection"),
+        close: document.getElementById("close")
+    };
+
+    function formatMoney(value) {
+        const number = Number(value ?? 0);
+
+        if (!Number.isFinite(number)) {
+            return "0";
+        }
+
+        return new Intl.NumberFormat("ru-RU", {
+            maximumFractionDigits: 0
+        }).format(number);
+    }
+
+    function setConnection(message, type = "") {
+        elements.connection.textContent = message;
+        elements.connection.className = "connection " + type;
+    }
+
+    function showProfile(user) {
+        elements.greeting.textContent =
+            "Привет, " + (user.first_name || "игрок") + "!";
+
+        elements.balance.textContent =
+            formatMoney(user.balance);
+
+        elements.balanceNote.textContent =
+            "Твои игровые средства";
+
+        elements.bankBalance.textContent =
+            formatMoney(user.bank_balance);
+
+        elements.reputation.textContent =
+            formatMoney(user.reputation);
+    }
+
+    function showLeaderboard(data) {
+        const players = Array.isArray(data)
+            ? data
+            : data.leaderboard || data.players || data.items || [];
+
+        if (!players.length) {
+            elements.leaderboard.innerHTML =
+                '<div class="empty">Пока нет игроков в рейтинге</div>';
+            return;
+        }
+
+        elements.leaderboard.innerHTML = "";
+
+        players.slice(0, 10).forEach((player, index) => {
+            const row = document.createElement("div");
+            row.className = "player-row";
+
+            const left = document.createElement("div");
+            left.className = "player-left";
+
+            const place = document.createElement("div");
+            place.className = "player-place";
+            place.textContent = "#" + (index + 1);
+
+            const name = document.createElement("div");
+            name.className = "player-name";
+            name.textContent = player.first_name || "Игрок";
+
+            const money = document.createElement("div");
+            money.className = "player-money";
+            money.textContent = formatMoney(
+                player.total ?? player.balance ?? 0
+            ) + " ₽";
+
+            left.append(place, name);
+            row.append(left, money);
+
+            elements.leaderboard.appendChild(row);
+        });
+    }
+
+    async function apiRequest(path, initData) {
+        const response = await fetch(API_BASE + path, {
+            method: "GET",
+            headers: {
+                "X-Telegram-Init-Data": initData
+            }
+        });
+
+        if (!response.ok) {
+            if (response.status === 401) {
+                throw new Error(
+                    "Не удалось подтвердить Telegram-аккаунт. Закрой и заново открой приложение через бота."
+                );
+            }
+
+            if (response.status === 403) {
+                throw new Error(
+                    "Доступ к аккаунту ограничен."
+                );
+            }
+
+            throw new Error(
+                "Ошибка сервера: " + response.status
+            );
+        }
+
+        return await response.json();
+    }
+
+    async function loadApp() {
+        if (!tg) {
+            setConnection(
+                "Открой Mini App через Telegram-бота, чтобы авторизоваться.",
+                "error"
+            );
+
+            elements.balance.textContent = "—";
+            elements.balanceNote.textContent = "Нет подключения к Telegram";
+
+            return;
+        }
+
         tg.ready();
         tg.expand();
 
@@ -326,25 +577,69 @@
             tg.setBackgroundColor("#0b101b");
         }
 
-        const user = tg.initDataUnsafe?.user;
+        const initData = tg.initData;
 
-        if (user?.first_name) {
-            document.getElementById("greeting").textContent =
-                "Привет, " + user.first_name + "!";
+        if (!initData) {
+            setConnection(
+                "Telegram не передал данные авторизации. Открой приложение через кнопку бота.",
+                "error"
+            );
+
+            elements.balance.textContent = "—";
+            elements.balanceNote.textContent = "Нет данных авторизации";
+
+            return;
         }
 
-        document.getElementById("close").onclick = () => {
-            tg.close();
-        };
-    } else {
-        document.getElementById("close").onclick = () => {
-            window.history.back();
-        };
+        setConnection("Подключаемся к серверу...", "loading");
+
+        try {
+            const userData = await apiRequest("/api/me", initData);
+            const user = userData.user || userData;
+
+            showProfile(user);
+
+            setConnection(
+                "Подключение установлено. Данные аккаунта загружены.",
+                ""
+            );
+
+            try {
+                const leaderboardData = await apiRequest(
+                    "/api/leaderboard",
+                    initData
+                );
+
+                showLeaderboard(leaderboardData);
+            } catch (error) {
+                elements.leaderboard.innerHTML =
+                    '<div class="empty">Не удалось загрузить рейтинг. Попробуй позже.</div>';
+
+                console.error("Ошибка рейтинга:", error);
+            }
+
+        } catch (error) {
+            console.error("Ошибка API:", error);
+
+            setConnection(error.message, "error");
+
+            elements.balance.textContent = "—";
+            elements.balanceNote.textContent = "Не удалось загрузить баланс";
+            elements.bankBalance.textContent = "—";
+            elements.reputation.textContent = "—";
+        }
     }
+
+    elements.close.addEventListener("click", () => {
+        if (tg) {
+            tg.close();
+        } else {
+            window.history.back();
+        }
+    });
+
+    loadApp();
 </script>
 
 </body>
 </html>
-
-
-
