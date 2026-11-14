@@ -4,39 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="theme-color" content="#0b101b">
     <title>BUSINESS LIFE</title>
+
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
         :root {
             --bg: #0b101b;
             --panel: #151e2d;
-            --panel2: #1c293b;
-            --gold: #e8b75a;
-            --text: #f5f6fa;
-            --muted: #8e9bad;
+            --panel2: #1b2738;
             --border: #29374b;
+            --text: #f1f4f8;
+            --muted: #8c9aaf;
+            --gold: #e8b75a;
             --green: #64d69a;
             --red: #ff7777;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             margin: 0;
-            padding: 20px 15px 35px;
-            background:
-                radial-gradient(ellipse at 50% -20%, #31425e 0%, transparent 55%),
-                var(--bg);
+            padding: 18px 14px 30px;
+            background: var(--bg);
             color: var(--text);
             font-family: Arial, sans-serif;
         }
 
-        button, input { font: inherit; }
+        button, input {
+            font-family: inherit;
+        }
 
         .container {
-            max-width: 520px;
+            max-width: 560px;
             margin: auto;
         }
 
@@ -44,120 +46,117 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
         }
 
         .logo {
-            color: var(--gold);
-            font-size: 13px;
+            font-size: 19px;
             font-weight: 900;
             letter-spacing: 2px;
+            color: var(--gold);
         }
 
         .avatar {
-            width: 45px;
-            height: 45px;
-            border-radius: 15px;
-            background: var(--panel2);
+            width: 42px;
+            height: 42px;
             display: grid;
             place-items: center;
-            font-size: 23px;
-            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: var(--panel);
+            font-size: 22px;
         }
 
         .welcome {
-            font-size: 27px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin: 0 0 8px;
-            overflow-wrap: anywhere;
+            margin: 25px 0 5px;
+            font-size: 24px;
+            font-weight: 900;
         }
 
         .subtitle {
             color: var(--muted);
-            font-size: 13px;
-            margin-bottom: 22px;
+            font-size: 12px;
         }
 
         .balance {
-            background: linear-gradient(135deg, #263b55, #172337);
-            border: 1px solid #405673;
-            border-radius: 22px;
-            padding: 20px;
-            margin-bottom: 13px;
+            margin-top: 23px;
+            padding: 22px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #25354a, #172234);
+            border: 1px solid var(--border);
         }
 
         .balance-label {
-            color: #bdc9d8;
-            font-size: 11px;
+            color: var(--muted);
+            font-size: 10px;
             letter-spacing: 1.5px;
         }
 
         .balance-value {
+            margin-top: 9px;
             color: var(--gold);
-            font-size: 30px;
+            font-size: 34px;
             font-weight: 900;
-            margin: 12px 0 7px;
             overflow-wrap: anywhere;
         }
 
         .balance-note {
-            color: #a8b6c8;
+            margin-top: 7px;
+            color: var(--muted);
             font-size: 11px;
         }
 
         .mini-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 11px;
-            margin-bottom: 24px;
+            gap: 10px;
+            margin-top: 12px;
         }
 
         .mini-stat {
+            padding: 15px;
+            border-radius: 15px;
             background: var(--panel);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 14px;
         }
 
         .mini-stat-label {
             color: var(--muted);
             font-size: 10px;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
         }
 
         .mini-stat-value {
-            font-size: 19px;
-            font-weight: 800;
-            overflow-wrap: anywhere;
+            margin-top: 8px;
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--gold);
         }
 
         .section-title {
-            font-size: 12px;
+            margin: 24px 0 12px;
             color: var(--muted);
+            font-size: 11px;
+            font-weight: 900;
             letter-spacing: 1.5px;
-            font-weight: 800;
-            margin: 25px 2px 13px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 11px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
         }
 
         .card {
+            min-width: 0;
+            padding: 16px 13px;
+            border-radius: 17px;
             background: var(--panel);
             border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 16px;
-            min-height: 125px;
             cursor: pointer;
             transition: .15s;
         }
 
-        .card:active { transform: scale(.97); }
+        .card:active {
+            transform: scale(.97);
+        }
 
         .card-icon {
             font-size: 27px;
@@ -196,7 +195,9 @@
             padding: 17px;
         }
 
-        .panel.active { display: block; }
+        .panel.active {
+            display: block;
+        }
 
         .panel-heading {
             display: flex;
@@ -297,7 +298,9 @@
             margin-top: 10px;
         }
 
-        .input:focus { border-color: var(--gold); }
+        .input:focus {
+            border-color: var(--gold);
+        }
 
         .leaderboard {
             background: var(--panel);
@@ -315,7 +318,9 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .player-row:last-child { border-bottom: none; }
+        .player-row:last-child {
+            border-bottom: none;
+        }
 
         .player-left {
             display: flex;
@@ -353,6 +358,7 @@
             color: var(--green);
             font-size: 11px;
             line-height: 1.5;
+            overflow-wrap: anywhere;
         }
 
         .connection.error {
@@ -503,7 +509,6 @@
         </div>
     </div>
 
-    <!-- КАРЬЕРА -->
     <section class="panel" id="career">
         <div class="panel-heading">
             <h2>💼 Карьера</h2>
@@ -513,7 +518,6 @@
         <div class="message" id="career-message"></div>
     </section>
 
-    <!-- БИЗНЕС -->
     <section class="panel" id="business">
         <div class="panel-heading">
             <h2>🏢 Бизнес</h2>
@@ -526,7 +530,6 @@
         <div class="message" id="business-message"></div>
     </section>
 
-    <!-- АВТОМОБИЛИ -->
     <section class="panel" id="cars">
         <div class="panel-heading">
             <h2>🚘 Автопарк</h2>
@@ -538,7 +541,6 @@
         <div class="message" id="cars-message"></div>
     </section>
 
-    <!-- НЕДВИЖИМОСТЬ -->
     <section class="panel" id="property">
         <div class="panel-heading">
             <h2>🏠 Недвижимость</h2>
@@ -550,7 +552,6 @@
         <div class="message" id="property-message"></div>
     </section>
 
-    <!-- БАНК -->
     <section class="panel" id="bank">
         <div class="panel-heading">
             <h2>🏦 Банк</h2>
@@ -582,7 +583,6 @@
         <div class="message" id="bank-message"></div>
     </section>
 
-    <!-- РЕЙТИНГ -->
     <section class="panel" id="rating">
         <div class="panel-heading">
             <h2>🏆 Рейтинг</h2>
@@ -607,10 +607,11 @@
     </button>
 
     <div class="footer">BUSINESS LIFE · ECONOMIC SIMULATOR</div>
-
 </div>
 
 <script>
+"use strict";
+
 const API_BASE = "https://business-life-api.onrender.com";
 const tg = window.Telegram?.WebApp;
 
@@ -647,11 +648,15 @@ function setConnection(message, type = "") {
 function showMessage(id, message, type = "success") {
     const box = document.getElementById(id);
 
+    if (!box) return;
+
     box.textContent = message;
     box.className = "message " + type;
 }
 
 async function apiRequest(path, method = "GET", body = null) {
+    const url = API_BASE + path;
+
     const options = {
         method,
         headers: {
@@ -664,19 +669,42 @@ async function apiRequest(path, method = "GET", body = null) {
         options.body = JSON.stringify(body);
     }
 
-    const response = await fetch(API_BASE + path, options);
+    let response;
+
+    try {
+        response = await fetch(url, options);
+    } catch (error) {
+        console.error("NETWORK ERROR:", {
+            url,
+            message: error.message,
+            name: error.name
+        });
+
+        throw new Error(
+            "Не удалось выполнить сетевой запрос к API. " +
+            "URL: " + url +
+            ". Ошибка: " + (error.message || error.name || "NetworkError")
+        );
+    }
 
     let data = {};
 
     try {
         data = await response.json();
-    } catch {
-        throw new Error("Сервер вернул некорректный ответ");
+    } catch (error) {
+        console.error("JSON PARSE ERROR:", error);
+
+        throw new Error(
+            "Сервер вернул некорректный ответ. HTTP " +
+            response.status
+        );
     }
 
     if (!response.ok) {
+        console.error("API RESPONSE ERROR:", response.status, data);
+
         throw new Error(
-            data.detail || ("Ошибка сервера: " + response.status)
+            data.detail || ("Ошибка сервера: HTTP " + response.status)
         );
     }
 
@@ -721,6 +749,7 @@ function openSection(id) {
 
     if (section) {
         section.classList.add("active");
+
         section.scrollIntoView({
             behavior: "smooth",
             block: "start"
@@ -747,7 +776,8 @@ function createItem(container, item, description, buttonText, action) {
 
     const price = document.createElement("div");
     price.className = "item-price";
-    price.textContent = formatMoney(item.price ?? item.salary) + " монет";
+    price.textContent =
+        formatMoney(item.price ?? item.salary) + " монет";
 
     top.append(name, price);
 
@@ -851,6 +881,11 @@ function renderCars() {
     const container = document.getElementById("cars-list");
     container.replaceChildren();
 
+    if (!catalog?.cars?.length) {
+        container.textContent = "Автомобили пока недоступны.";
+        return;
+    }
+
     catalog.cars.forEach(item => {
         createItem(
             container,
@@ -865,6 +900,11 @@ function renderCars() {
 function renderProperties() {
     const container = document.getElementById("property-list");
     container.replaceChildren();
+
+    if (!catalog?.properties?.length) {
+        container.textContent = "Объекты недвижимости пока недоступны.";
+        return;
+    }
 
     catalog.properties.forEach(item => {
         createItem(
@@ -886,14 +926,16 @@ function renderInventory() {
         "business"
     );
 
+    const assets = inventory.assets || [];
+
     renderAssets(
-        inventory.assets.filter(item => item.asset_type === "car"),
+        assets.filter(item => item.asset_type === "car"),
         "my-cars",
         "car"
     );
 
     renderAssets(
-        inventory.assets.filter(item => item.asset_type === "property"),
+        assets.filter(item => item.asset_type === "property"),
         "my-property",
         "property"
     );
@@ -930,11 +972,7 @@ async function doWork(jobKey) {
         );
 
     } catch (error) {
-        showMessage(
-            "career-message",
-            error.message,
-            "error"
-        );
+        showMessage("career-message", error.message, "error");
     }
 }
 
@@ -949,17 +987,10 @@ async function purchaseBusiness(key) {
         updateBalances(result.user);
         await loadInventory();
 
-        showMessage(
-            "business-message",
-            result.message
-        );
+        showMessage("business-message", result.message);
 
     } catch (error) {
-        showMessage(
-            "business-message",
-            error.message,
-            "error"
-        );
+        showMessage("business-message", error.message, "error");
     }
 }
 
@@ -973,17 +1004,10 @@ async function collectBusiness() {
         updateBalances(result.user);
         await loadInventory();
 
-        showMessage(
-            "business-message",
-            result.message
-        );
+        showMessage("business-message", result.message);
 
     } catch (error) {
-        showMessage(
-            "business-message",
-            error.message,
-            "error"
-        );
+        showMessage("business-message", error.message, "error");
     }
 }
 
@@ -1004,11 +1028,7 @@ async function purchaseAsset(kind, key) {
         showMessage(messageId, result.message);
 
     } catch (error) {
-        showMessage(
-            messageId,
-            error.message,
-            "error"
-        );
+        showMessage(messageId, error.message, "error");
     }
 }
 
@@ -1038,17 +1058,10 @@ async function bankTransfer(toBank) {
         updateBalances(result.user);
         input.value = "";
 
-        showMessage(
-            "bank-message",
-            result.message
-        );
+        showMessage("bank-message", result.message);
 
     } catch (error) {
-        showMessage(
-            "bank-message",
-            error.message,
-            "error"
-        );
+        showMessage("bank-message", error.message, "error");
     }
 }
 
@@ -1098,40 +1111,49 @@ async function loadApp() {
             "Открой Mini App через Telegram-бота.",
             "error"
         );
+
         el.balance.textContent = "—";
         return;
     }
-
-    tg.ready();
-    tg.expand();
-
-    if (tg.setHeaderColor) {
-        tg.setHeaderColor("#0b101b");
-    }
-
-    if (tg.setBackgroundColor) {
-        tg.setBackgroundColor("#0b101b");
-    }
-
-    initData = tg.initData;
-
-    if (!initData) {
-        setConnection(
-            "Нет данных авторизации Telegram. Открой приложение через кнопку бота.",
-            "error"
-        );
-        el.balance.textContent = "—";
-        return;
-    }
-
-    setConnection("Подключаемся к серверу...", "loading");
 
     try {
+        tg.ready();
+        tg.expand();
+
+        tg.setHeaderColor?.("#0b101b");
+        tg.setBackgroundColor?.("#0b101b");
+
+        initData = tg.initData || "";
+
+        if (!initData) {
+            setConnection(
+                "Нет данных авторизации Telegram. Открой приложение через кнопку бота.",
+                "error"
+            );
+
+            el.balance.textContent = "—";
+            return;
+        }
+
+        setConnection("Подключаемся к серверу...", "loading");
+
+        console.info("BUSINESS LIFE: Telegram WebApp обнаружен.");
+        console.info("BUSINESS LIFE: initData получен:", Boolean(initData));
+        console.info("BUSINESS LIFE: API:", API_BASE);
+
         const user = await apiRequest("/api/me");
         showProfile(user);
 
+        setConnection("Профиль загружен. Загружаем каталог...", "loading");
+
         await loadCatalog();
+
+        setConnection("Каталог загружен. Загружаем имущество...", "loading");
+
         await loadInventory();
+
+        setConnection("Имущество загружено. Загружаем рейтинг...", "loading");
+
         await loadLeaderboard();
 
         setConnection(
@@ -1139,10 +1161,10 @@ async function loadApp() {
         );
 
     } catch (error) {
-        console.error(error);
+        console.error("BUSINESS LIFE LOAD ERROR:", error);
 
         setConnection(
-            error.message,
+            "Ошибка загрузки: " + error.message,
             "error"
         );
 
