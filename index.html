@@ -25,7 +25,7 @@
 
         body {
             margin: 0;
-            padding: 22px 16px 35px;
+            padding: 20px 15px 35px;
             background:
                 radial-gradient(ellipse at 50% -20%, #31425e 0%, transparent 55%),
                 var(--bg);
@@ -33,13 +33,18 @@
             font-family: Arial, sans-serif;
         }
 
-        .container { max-width: 520px; margin: auto; }
+        button, input { font: inherit; }
+
+        .container {
+            max-width: 520px;
+            margin: auto;
+        }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 27px;
+            margin-bottom: 25px;
         }
 
         .logo {
@@ -61,37 +66,25 @@
         }
 
         .welcome {
-            font-size: 28px;
+            font-size: 27px;
             font-weight: 800;
-            line-height: 1.15;
+            line-height: 1.2;
             margin: 0 0 8px;
             overflow-wrap: anywhere;
         }
 
         .subtitle {
             color: var(--muted);
-            font-size: 14px;
-            margin-bottom: 24px;
+            font-size: 13px;
+            margin-bottom: 22px;
         }
 
         .balance {
             background: linear-gradient(135deg, #263b55, #172337);
             border: 1px solid #405673;
-            border-radius: 23px;
-            padding: 21px;
-            margin-bottom: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .balance::after {
-            content: "₿";
-            position: absolute;
-            right: 17px;
-            top: 20px;
-            font-size: 60px;
-            color: rgba(255,255,255,.05);
-            font-weight: 900;
+            border-radius: 22px;
+            padding: 20px;
+            margin-bottom: 13px;
         }
 
         .balance-label {
@@ -102,7 +95,7 @@
 
         .balance-value {
             color: var(--gold);
-            font-size: 31px;
+            font-size: 30px;
             font-weight: 900;
             margin: 12px 0 7px;
             overflow-wrap: anywhere;
@@ -116,15 +109,15 @@
         .mini-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 11px;
+            margin-bottom: 24px;
         }
 
         .mini-stat {
             background: var(--panel);
             border: 1px solid var(--border);
-            border-radius: 17px;
-            padding: 15px;
+            border-radius: 16px;
+            padding: 14px;
         }
 
         .mini-stat-label {
@@ -135,7 +128,6 @@
         }
 
         .mini-stat-value {
-            color: var(--text);
             font-size: 19px;
             font-weight: 800;
             overflow-wrap: anywhere;
@@ -146,25 +138,36 @@
             color: var(--muted);
             letter-spacing: 1.5px;
             font-weight: 800;
-            margin: 27px 2px 13px;
+            margin: 25px 2px 13px;
         }
 
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 11px;
         }
 
         .card {
             background: var(--panel);
             border: 1px solid var(--border);
-            border-radius: 19px;
-            padding: 17px;
+            border-radius: 18px;
+            padding: 16px;
             min-height: 125px;
+            cursor: pointer;
+            transition: .15s;
         }
 
-        .card-icon { font-size: 27px; margin-bottom: 13px; }
-        .card-title { font-size: 14px; font-weight: 800; }
+        .card:active { transform: scale(.97); }
+
+        .card-icon {
+            font-size: 27px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 800;
+        }
 
         .card-description {
             color: var(--muted);
@@ -184,19 +187,131 @@
             padding: 5px 8px;
         }
 
+        .panel {
+            display: none;
+            margin-top: 22px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 17px;
+        }
+
+        .panel.active { display: block; }
+
+        .panel-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 17px;
+        }
+
+        .panel-heading h2 {
+            font-size: 19px;
+            margin: 0;
+        }
+
+        .back-button {
+            border: 1px solid var(--border);
+            background: var(--panel2);
+            color: var(--text);
+            border-radius: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .item {
+            padding: 14px;
+            margin-bottom: 10px;
+            border-radius: 14px;
+            background: var(--panel2);
+            border: 1px solid var(--border);
+        }
+
+        .item-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .item-name {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .item-price {
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .item-description {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 7px;
+            line-height: 1.5;
+        }
+
+        .action-button {
+            width: 100%;
+            margin-top: 12px;
+            border: none;
+            border-radius: 11px;
+            padding: 12px;
+            background: var(--gold);
+            color: #18202c;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .action-button:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        .secondary-button {
+            width: 100%;
+            margin-top: 9px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            padding: 12px;
+            background: var(--panel2);
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .input {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            color: var(--text);
+            padding: 13px;
+            outline: none;
+            margin-top: 10px;
+        }
+
+        .input:focus { border-color: var(--gold); }
+
         .leaderboard {
             background: var(--panel);
             border: 1px solid var(--border);
-            border-radius: 19px;
-            padding: 16px;
+            border-radius: 18px;
+            padding: 15px;
         }
 
         .player-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            padding: 13px 0;
+            gap: 10px;
+            padding: 12px 0;
             border-bottom: 1px solid var(--border);
         }
 
@@ -205,7 +320,7 @@
         .player-left {
             display: flex;
             align-items: center;
-            gap: 11px;
+            gap: 10px;
             min-width: 0;
         }
 
@@ -213,7 +328,7 @@
             color: var(--gold);
             font-weight: 900;
             font-size: 13px;
-            min-width: 22px;
+            min-width: 25px;
         }
 
         .player-name {
@@ -229,19 +344,8 @@
             white-space: nowrap;
         }
 
-        .info {
-            margin-top: 22px;
-            padding: 15px;
-            border-radius: 17px;
-            background: #111a28;
-            border: 1px solid var(--border);
-            color: var(--muted);
-            font-size: 11px;
-            line-height: 1.6;
-        }
-
         .connection {
-            margin-top: 13px;
+            margin-top: 15px;
             padding: 12px 14px;
             border-radius: 13px;
             background: rgba(100,214,154,.08);
@@ -263,20 +367,57 @@
             color: var(--gold);
         }
 
+        .empty {
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        .message {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 11px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .message.success {
+            display: block;
+            color: var(--green);
+            background: rgba(100,214,154,.08);
+        }
+
+        .message.error {
+            display: block;
+            color: var(--red);
+            background: rgba(255,119,119,.08);
+        }
+
+        .info {
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 15px;
+            background: #111a28;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
         .close-button {
             width: 100%;
-            padding: 16px;
+            padding: 15px;
             margin-top: 18px;
             border: none;
-            border-radius: 15px;
+            border-radius: 14px;
             background: var(--gold);
             color: #18202c;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 900;
             cursor: pointer;
         }
-
-        .close-button:active { transform: scale(.98); }
 
         .footer {
             text-align: center;
@@ -284,13 +425,6 @@
             font-size: 10px;
             margin-top: 22px;
             letter-spacing: 1px;
-        }
-
-        .empty {
-            color: var(--muted);
-            font-size: 12px;
-            text-align: center;
-            padding: 15px 0;
         }
     </style>
 </head>
@@ -304,17 +438,12 @@
     </div>
 
     <h1 class="welcome" id="greeting">Построй свою империю</h1>
-
-    <div class="subtitle">
-        Твоя история. Твои решения. Твой бизнес.
-    </div>
+    <div class="subtitle">Твоя история. Твои решения. Твой бизнес.</div>
 
     <div class="balance">
         <div class="balance-label">ИГРОВОЙ БАЛАНС</div>
         <div class="balance-value" id="balance">Загрузка...</div>
-        <div class="balance-note" id="balance-note">
-            Получаем данные аккаунта
-        </div>
+        <div class="balance-note" id="balance-note">Получаем данные аккаунта</div>
     </div>
 
     <div class="mini-stats">
@@ -322,7 +451,6 @@
             <div class="mini-stat-label">В БАНКЕ</div>
             <div class="mini-stat-value" id="bank-balance">—</div>
         </div>
-
         <div class="mini-stat">
             <div class="mini-stat-label">РЕПУТАЦИЯ</div>
             <div class="mini-stat-value" id="reputation">—</div>
@@ -332,249 +460,708 @@
     <div class="section-title">ТВОЯ ИМПЕРИЯ</div>
 
     <div class="grid">
-        <div class="card">
+        <div class="card" onclick="openSection('career')">
             <div class="card-icon">💼</div>
             <div class="card-title">Карьера</div>
             <div class="card-description">Работай и получай зарплату</div>
             <div class="status">РАЗВИВАЙСЯ</div>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openSection('business')">
             <div class="card-icon">🏢</div>
             <div class="card-title">Бизнес</div>
-            <div class="card-description">Покупай предприятия</div>
+            <div class="card-description">Покупай предприятия и собирай прибыль</div>
             <div class="status">ИНВЕСТИРУЙ</div>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openSection('cars')">
             <div class="card-icon">🚘</div>
             <div class="card-title">Автопарк</div>
-            <div class="card-description">Собирай коллекцию машин</div>
+            <div class="card-description">Собирай коллекцию автомобилей</div>
             <div class="status">КОЛЛЕКЦИЯ</div>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openSection('property')">
             <div class="card-icon">🏠</div>
             <div class="card-title">Недвижимость</div>
             <div class="card-description">Приобретай новые владения</div>
             <div class="status">СОБСТВЕННОСТЬ</div>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openSection('bank')">
             <div class="card-icon">🏦</div>
             <div class="card-title">Банк</div>
             <div class="card-description">Управляй игровыми средствами</div>
             <div class="status">ФИНАНСЫ</div>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openSection('rating')">
             <div class="card-icon">🏆</div>
             <div class="card-title">Рейтинг</div>
-            <div class="card-description">Поднимайся в таблице игроков</div>
+            <div class="card-description">Соревнуйся с другими игроками</div>
             <div class="status">ЛИДЕРСТВО</div>
         </div>
     </div>
 
-    <div class="section-title">ТОП ИГРОКОВ</div>
+    <!-- КАРЬЕРА -->
+    <section class="panel" id="career">
+        <div class="panel-heading">
+            <h2>💼 Карьера</h2>
+            <button class="back-button" onclick="closeSections()">Назад</button>
+        </div>
+        <div id="jobs-list"></div>
+        <div class="message" id="career-message"></div>
+    </section>
 
-    <div class="leaderboard" id="leaderboard">
-        <div class="empty">Загружаем рейтинг...</div>
-    </div>
+    <!-- БИЗНЕС -->
+    <section class="panel" id="business">
+        <div class="panel-heading">
+            <h2>🏢 Бизнес</h2>
+            <button class="back-button" onclick="closeSections()">Назад</button>
+        </div>
+        <div id="business-list"></div>
+        <button class="secondary-button" onclick="collectBusiness()">💰 Собрать доход</button>
+        <div class="section-title">МОИ ПРЕДПРИЯТИЯ</div>
+        <div id="my-businesses"></div>
+        <div class="message" id="business-message"></div>
+    </section>
+
+    <!-- АВТОМОБИЛИ -->
+    <section class="panel" id="cars">
+        <div class="panel-heading">
+            <h2>🚘 Автопарк</h2>
+            <button class="back-button" onclick="closeSections()">Назад</button>
+        </div>
+        <div id="cars-list"></div>
+        <div class="section-title">МОИ АВТОМОБИЛИ</div>
+        <div id="my-cars"></div>
+        <div class="message" id="cars-message"></div>
+    </section>
+
+    <!-- НЕДВИЖИМОСТЬ -->
+    <section class="panel" id="property">
+        <div class="panel-heading">
+            <h2>🏠 Недвижимость</h2>
+            <button class="back-button" onclick="closeSections()">Назад</button>
+        </div>
+        <div id="property-list"></div>
+        <div class="section-title">МОЯ НЕДВИЖИМОСТЬ</div>
+        <div id="my-property"></div>
+        <div class="message" id="property-message"></div>
+    </section>
+
+    <!-- БАНК -->
+    <section class="panel" id="bank">
+        <div class="panel-heading">
+            <h2>🏦 Банк</h2>
+            <button class="back-button" onclick="closeSections()">Назад</button>
+        </div>
+
+        <div class="item">
+            <div class="item-name">Текущий баланс</div>
+            <div class="item-price" id="bank-current-balance">—</div>
+        </div>
+
+        <input
+            class="input"
+            id="bank-amount"
+            type="number"
+            min="1"
+            step="1"
+            placeholder="Введите сумму"
+        >
+
+        <button class="action-button" onclick="bankTransfer(true)">
+            ПОЛОЖИТЬ В БАНК
+        </button>
+
+        <button class="secondary-button" onclick="bankTransfer(false)">
+            СНЯТЬ С БАНКА
+        </button>
+
+        <div class="message" id="bank-message"></div>
+    </section>
+
+    <!-- РЕЙТИНГ -->
+    <section class="panel" id="rating">
+        <div class="panel-heading">
+            <h2>🏆 Рейтинг</h2>
+            <button class="back-button" onclick="closeSections()">Назад</button>
+        </div>
+        <div class="leaderboard" id="leaderboard">
+            <div class="empty">Загружаем рейтинг...</div>
+        </div>
+    </section>
 
     <div class="connection loading" id="connection">
         Подключаемся к серверу...
     </div>
 
     <div class="info">
-        Данные профиля и рейтинг загружаются с сервера BUSINESS LIFE.
-        Работа, покупки и управление имуществом пока доступны через Telegram-бота.
+        BUSINESS LIFE — экономический симулятор.
+        Все покупки, зарплаты и банковские операции используют игровой баланс.
     </div>
 
     <button class="close-button" id="close">
         ЗАКРЫТЬ ПРИЛОЖЕНИЕ
     </button>
 
-    <div class="footer">
-        BUSINESS LIFE · ECONOMIC SIMULATOR
-    </div>
+    <div class="footer">BUSINESS LIFE · ECONOMIC SIMULATOR</div>
 
 </div>
 
 <script>
-    const API_BASE = "https://business-life-api.onrender.com";
-    const tg = window.Telegram?.WebApp;
+const API_BASE = "https://business-life-api.onrender.com";
+const tg = window.Telegram?.WebApp;
 
-    const el = {
-        greeting: document.getElementById("greeting"),
-        balance: document.getElementById("balance"),
-        balanceNote: document.getElementById("balance-note"),
-        bank: document.getElementById("bank-balance"),
-        reputation: document.getElementById("reputation"),
-        leaderboard: document.getElementById("leaderboard"),
-        connection: document.getElementById("connection"),
-        close: document.getElementById("close")
+let initData = "";
+let currentUser = null;
+let catalog = null;
+let inventory = null;
+
+const el = {
+    greeting: document.getElementById("greeting"),
+    balance: document.getElementById("balance"),
+    balanceNote: document.getElementById("balance-note"),
+    bank: document.getElementById("bank-balance"),
+    reputation: document.getElementById("reputation"),
+    connection: document.getElementById("connection"),
+    leaderboard: document.getElementById("leaderboard")
+};
+
+function formatMoney(value) {
+    const number = Number(value ?? 0);
+
+    if (!Number.isFinite(number)) return "0";
+
+    return new Intl.NumberFormat("ru-RU", {
+        maximumFractionDigits: 0
+    }).format(number);
+}
+
+function setConnection(message, type = "") {
+    el.connection.textContent = message;
+    el.connection.className = "connection " + type;
+}
+
+function showMessage(id, message, type = "success") {
+    const box = document.getElementById(id);
+
+    box.textContent = message;
+    box.className = "message " + type;
+}
+
+async function apiRequest(path, method = "GET", body = null) {
+    const options = {
+        method,
+        headers: {
+            "X-Telegram-Init-Data": initData
+        }
     };
 
-    function formatMoney(value) {
-        const number = Number(value ?? 0);
-
-        if (!Number.isFinite(number)) return "0";
-
-        return new Intl.NumberFormat("ru-RU", {
-            maximumFractionDigits: 0
-        }).format(number);
+    if (body !== null) {
+        options.headers["Content-Type"] = "application/json";
+        options.body = JSON.stringify(body);
     }
 
-    function setConnection(message, type = "") {
-        el.connection.textContent = message;
-        el.connection.className = "connection " + type;
+    const response = await fetch(API_BASE + path, options);
+
+    let data = {};
+
+    try {
+        data = await response.json();
+    } catch {
+        throw new Error("Сервер вернул некорректный ответ");
     }
 
-    async function apiRequest(path, initData) {
-        const response = await fetch(API_BASE + path, {
-            method: "GET",
-            headers: {
-                "X-Telegram-Init-Data": initData
-            }
-        });
-
-        if (!response.ok) {
-            if (response.status === 401) {
-                throw new Error(
-                    "Не удалось подтвердить Telegram-аккаунт. Закрой и снова открой приложение через бота."
-                );
-            }
-
-            if (response.status === 403) {
-                throw new Error("Доступ к аккаунту ограничен.");
-            }
-
-            throw new Error("Ошибка сервера: " + response.status);
-        }
-
-        return response.json();
+    if (!response.ok) {
+        throw new Error(
+            data.detail || ("Ошибка сервера: " + response.status)
+        );
     }
 
-    function showProfile(user) {
-        el.greeting.textContent =
-            "Привет, " + (user.first_name || "игрок") + "!";
+    return data;
+}
 
-        el.balance.textContent = formatMoney(user.balance);
-        el.balanceNote.textContent = "Твои игровые средства";
+function showProfile(user) {
+    currentUser = user;
 
-        el.bank.textContent = formatMoney(user.bank_balance);
-        el.reputation.textContent = formatMoney(user.reputation);
+    el.greeting.textContent =
+        "Привет, " + (user.first_name || "игрок") + "!";
+
+    el.balance.textContent = formatMoney(user.balance);
+    el.balanceNote.textContent = "Твои игровые средства";
+
+    el.bank.textContent = formatMoney(user.bank_balance);
+    el.reputation.textContent = formatMoney(user.reputation);
+
+    const bankCurrent = document.getElementById("bank-current-balance");
+
+    if (bankCurrent) {
+        bankCurrent.textContent =
+            formatMoney(user.bank_balance) + " монет";
     }
+}
 
-    function showLeaderboard(data) {
-        const players = Array.isArray(data)
-            ? data
-            : data.leaderboard || data.players || data.items || [];
+function updateBalances(user) {
+    if (!user || !currentUser) return;
 
-        if (!players.length) {
-            el.leaderboard.innerHTML =
-                '<div class="empty">Пока нет игроков в рейтинге</div>';
-            return;
-        }
+    currentUser = {
+        ...currentUser,
+        ...user
+    };
 
-        el.leaderboard.replaceChildren();
+    showProfile(currentUser);
+}
 
-        players.slice(0, 10).forEach((player, index) => {
-            const row = document.createElement("div");
-            row.className = "player-row";
+function openSection(id) {
+    closeSections();
 
-            const left = document.createElement("div");
-            left.className = "player-left";
+    const section = document.getElementById(id);
 
-            const place = document.createElement("div");
-            place.className = "player-place";
-            place.textContent = "#" + (index + 1);
-
-            const name = document.createElement("div");
-            name.className = "player-name";
-            name.textContent = player.first_name || "Игрок";
-
-            const money = document.createElement("div");
-            money.className = "player-money";
-            money.textContent =
-                formatMoney(player.total ?? player.balance ?? 0) + " ₽";
-
-            left.append(place, name);
-            row.append(left, money);
-            el.leaderboard.appendChild(row);
+    if (section) {
+        section.classList.add("active");
+        section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
         });
     }
+}
 
-    async function loadApp() {
-        if (!tg) {
-            setConnection(
-                "Открой Mini App через Telegram-бота, чтобы авторизоваться.",
-                "error"
-            );
-            el.balance.textContent = "—";
-            el.balanceNote.textContent = "Нет подключения к Telegram";
-            return;
-        }
-
-        tg.ready();
-        tg.expand();
-
-        if (tg.setHeaderColor) tg.setHeaderColor("#0b101b");
-        if (tg.setBackgroundColor) tg.setBackgroundColor("#0b101b");
-
-        const initData = tg.initData;
-
-        if (!initData) {
-            setConnection(
-                "Telegram не передал данные авторизации. Открой приложение через кнопку бота.",
-                "error"
-            );
-            el.balance.textContent = "—";
-            el.balanceNote.textContent = "Нет данных авторизации";
-            return;
-        }
-
-        setConnection("Подключаемся к серверу...", "loading");
-
-        try {
-            const profileData = await apiRequest("/api/me", initData);
-            const user = profileData.user || profileData;
-
-            showProfile(user);
-
-            setConnection(
-                "Подключение установлено. Данные аккаунта загружены."
-            );
-
-            try {
-                const leaderboardData =
-                    await apiRequest("/api/leaderboard", initData);
-
-                showLeaderboard(leaderboardData);
-            } catch (error) {
-                console.error("Ошибка рейтинга:", error);
-                el.leaderboard.innerHTML =
-                    '<div class="empty">Не удалось загрузить рейтинг. Попробуй позже.</div>';
-            }
-
-        } catch (error) {
-            console.error("Ошибка API:", error);
-
-            setConnection(error.message, "error");
-
-            el.balance.textContent = "—";
-            el.balanceNote.textContent = "Не удалось загрузить баланс";
-            el.bank.textContent = "—";
-            el.reputation.textContent = "—";
-        }
-    }
-
-    el.close.addEventListener("click", () => {
-        if (tg) tg.close();
-        else window.history.back();
+function closeSections() {
+    document.querySelectorAll(".panel").forEach(panel => {
+        panel.classList.remove("active");
     });
+}
 
-    loadApp();
+function createItem(container, item, description, buttonText, action) {
+    const box = document.createElement("div");
+    box.className = "item";
+
+    const top = document.createElement("div");
+    top.className = "item-top";
+
+    const name = document.createElement("div");
+    name.className = "item-name";
+    name.textContent = item.name;
+
+    const price = document.createElement("div");
+    price.className = "item-price";
+    price.textContent = formatMoney(item.price ?? item.salary) + " монет";
+
+    top.append(name, price);
+
+    const desc = document.createElement("div");
+    desc.className = "item-description";
+    desc.textContent = description;
+
+    const button = document.createElement("button");
+    button.className = "action-button";
+    button.textContent = buttonText;
+    button.addEventListener("click", action);
+
+    box.append(top, desc, button);
+    container.appendChild(box);
+}
+
+function renderJobs() {
+    const container = document.getElementById("jobs-list");
+    container.replaceChildren();
+
+    if (!catalog?.jobs?.length) {
+        container.textContent = "Профессии не найдены.";
+        return;
+    }
+
+    catalog.jobs.forEach(job => {
+        createItem(
+            container,
+            {
+                name: job.name,
+                salary: job.salary
+            },
+            "Зарплата за смену. Повторная работа доступна через час.",
+            "ВЫЙТИ НА СМЕНУ",
+            () => doWork(job.key)
+        );
+    });
+}
+
+function renderBusinesses() {
+    const container = document.getElementById("business-list");
+    container.replaceChildren();
+
+    if (!catalog?.businesses?.length) {
+        container.textContent = "Бизнесы не найдены.";
+        return;
+    }
+
+    catalog.businesses.forEach(item => {
+        createItem(
+            container,
+            item,
+            "Доход: " + formatMoney(item.income_per_hour) + " монет в час.",
+            "КУПИТЬ БИЗНЕС",
+            () => purchaseBusiness(item.key)
+        );
+    });
+}
+
+function renderAssets(items, containerId, kind) {
+    const container = document.getElementById(containerId);
+    container.replaceChildren();
+
+    if (!items?.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "Пока ничего нет.";
+        container.appendChild(empty);
+        return;
+    }
+
+    items.forEach(item => {
+        const box = document.createElement("div");
+        box.className = "item";
+
+        const name = document.createElement("div");
+        name.className = "item-name";
+        name.textContent = item.name || item.business_type;
+
+        const price = document.createElement("div");
+        price.className = "item-description";
+        price.textContent =
+            "Цена покупки: " + formatMoney(item.purchase_price) + " монет";
+
+        box.append(name, price);
+
+        if (kind === "business") {
+            const income = document.createElement("div");
+            income.className = "item-description";
+            income.textContent =
+                "Доход в час: " + formatMoney(item.income_per_hour);
+
+            box.appendChild(income);
+        }
+
+        container.appendChild(box);
+    });
+}
+
+function renderCars() {
+    const container = document.getElementById("cars-list");
+    container.replaceChildren();
+
+    catalog.cars.forEach(item => {
+        createItem(
+            container,
+            item,
+            "Автомобиль для твоей коллекции.",
+            "КУПИТЬ АВТОМОБИЛЬ",
+            () => purchaseAsset("car", item.key)
+        );
+    });
+}
+
+function renderProperties() {
+    const container = document.getElementById("property-list");
+    container.replaceChildren();
+
+    catalog.properties.forEach(item => {
+        createItem(
+            container,
+            item,
+            "Новый объект в твоей собственности.",
+            "КУПИТЬ НЕДВИЖИМОСТЬ",
+            () => purchaseAsset("property", item.key)
+        );
+    });
+}
+
+function renderInventory() {
+    if (!inventory) return;
+
+    renderAssets(
+        inventory.businesses,
+        "my-businesses",
+        "business"
+    );
+
+    renderAssets(
+        inventory.assets.filter(item => item.asset_type === "car"),
+        "my-cars",
+        "car"
+    );
+
+    renderAssets(
+        inventory.assets.filter(item => item.asset_type === "property"),
+        "my-property",
+        "property"
+    );
+}
+
+async function loadInventory() {
+    inventory = await apiRequest("/api/inventory");
+    renderInventory();
+}
+
+async function loadCatalog() {
+    catalog = await apiRequest("/api/catalog");
+
+    renderJobs();
+    renderBusinesses();
+    renderCars();
+    renderProperties();
+}
+
+async function doWork(jobKey) {
+    try {
+        const result = await apiRequest(
+            "/api/work",
+            "POST",
+            { job_key: jobKey }
+        );
+
+        updateBalances(result.user);
+
+        showMessage(
+            "career-message",
+            result.message + " Получено: " +
+            formatMoney(result.salary) + " монет."
+        );
+
+    } catch (error) {
+        showMessage(
+            "career-message",
+            error.message,
+            "error"
+        );
+    }
+}
+
+async function purchaseBusiness(key) {
+    try {
+        const result = await apiRequest(
+            "/api/business/buy",
+            "POST",
+            { key }
+        );
+
+        updateBalances(result.user);
+        await loadInventory();
+
+        showMessage(
+            "business-message",
+            result.message
+        );
+
+    } catch (error) {
+        showMessage(
+            "business-message",
+            error.message,
+            "error"
+        );
+    }
+}
+
+async function collectBusiness() {
+    try {
+        const result = await apiRequest(
+            "/api/business/collect",
+            "POST"
+        );
+
+        updateBalances(result.user);
+        await loadInventory();
+
+        showMessage(
+            "business-message",
+            result.message
+        );
+
+    } catch (error) {
+        showMessage(
+            "business-message",
+            error.message,
+            "error"
+        );
+    }
+}
+
+async function purchaseAsset(kind, key) {
+    const messageId =
+        kind === "car" ? "cars-message" : "property-message";
+
+    try {
+        const result = await apiRequest(
+            "/api/asset/buy",
+            "POST",
+            { kind, key }
+        );
+
+        updateBalances(result.user);
+        await loadInventory();
+
+        showMessage(messageId, result.message);
+
+    } catch (error) {
+        showMessage(
+            messageId,
+            error.message,
+            "error"
+        );
+    }
+}
+
+async function bankTransfer(toBank) {
+    const input = document.getElementById("bank-amount");
+    const amount = Number(input.value);
+
+    if (!Number.isSafeInteger(amount) || amount <= 0) {
+        showMessage(
+            "bank-message",
+            "Введи корректную сумму.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+        const result = await apiRequest(
+            "/api/bank/transfer",
+            "POST",
+            {
+                amount,
+                to_bank: toBank
+            }
+        );
+
+        updateBalances(result.user);
+        input.value = "";
+
+        showMessage(
+            "bank-message",
+            result.message
+        );
+
+    } catch (error) {
+        showMessage(
+            "bank-message",
+            error.message,
+            "error"
+        );
+    }
+}
+
+async function loadLeaderboard() {
+    const data = await apiRequest("/api/leaderboard");
+    const players = data.players || [];
+
+    el.leaderboard.replaceChildren();
+
+    if (!players.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "Пока нет игроков в рейтинге.";
+        el.leaderboard.appendChild(empty);
+        return;
+    }
+
+    players.forEach((player, index) => {
+        const row = document.createElement("div");
+        row.className = "player-row";
+
+        const left = document.createElement("div");
+        left.className = "player-left";
+
+        const place = document.createElement("div");
+        place.className = "player-place";
+        place.textContent = "#" + (index + 1);
+
+        const name = document.createElement("div");
+        name.className = "player-name";
+        name.textContent = player.first_name || "Игрок";
+
+        const money = document.createElement("div");
+        money.className = "player-money";
+        money.textContent = formatMoney(player.total) + " монет";
+
+        left.append(place, name);
+        row.append(left, money);
+
+        el.leaderboard.appendChild(row);
+    });
+}
+
+async function loadApp() {
+    if (!tg) {
+        setConnection(
+            "Открой Mini App через Telegram-бота.",
+            "error"
+        );
+        el.balance.textContent = "—";
+        return;
+    }
+
+    tg.ready();
+    tg.expand();
+
+    if (tg.setHeaderColor) {
+        tg.setHeaderColor("#0b101b");
+    }
+
+    if (tg.setBackgroundColor) {
+        tg.setBackgroundColor("#0b101b");
+    }
+
+    initData = tg.initData;
+
+    if (!initData) {
+        setConnection(
+            "Нет данных авторизации Telegram. Открой приложение через кнопку бота.",
+            "error"
+        );
+        el.balance.textContent = "—";
+        return;
+    }
+
+    setConnection("Подключаемся к серверу...", "loading");
+
+    try {
+        const user = await apiRequest("/api/me");
+        showProfile(user);
+
+        await loadCatalog();
+        await loadInventory();
+        await loadLeaderboard();
+
+        setConnection(
+            "Подключение установлено. Все игровые разделы загружены."
+        );
+
+    } catch (error) {
+        console.error(error);
+
+        setConnection(
+            error.message,
+            "error"
+        );
+
+        el.balance.textContent = "—";
+        el.bank.textContent = "—";
+        el.reputation.textContent = "—";
+        el.balanceNote.textContent = "Не удалось загрузить данные";
+    }
+}
+
+document.getElementById("close").addEventListener("click", () => {
+    if (tg) {
+        tg.close();
+    } else {
+        window.history.back();
+    }
+});
+
+loadApp();
 </script>
 
 </body>
