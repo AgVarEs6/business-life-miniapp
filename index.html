@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="theme-color" content="#0b101b">
-
     <title>BUSINESS LIFE</title>
-
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
@@ -23,9 +21,7 @@
             --red: #ff7777;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -37,10 +33,7 @@
             font-family: Arial, sans-serif;
         }
 
-        .container {
-            max-width: 520px;
-            margin: auto;
-        }
+        .container { max-width: 520px; margin: auto; }
 
         .header {
             display: flex;
@@ -170,15 +163,8 @@
             min-height: 125px;
         }
 
-        .card-icon {
-            font-size: 27px;
-            margin-bottom: 13px;
-        }
-
-        .card-title {
-            font-size: 14px;
-            font-weight: 800;
-        }
+        .card-icon { font-size: 27px; margin-bottom: 13px; }
+        .card-title { font-size: 14px; font-weight: 800; }
 
         .card-description {
             color: var(--muted);
@@ -214,9 +200,7 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .player-row:last-child {
-            border-bottom: none;
-        }
+        .player-row:last-child { border-bottom: none; }
 
         .player-left {
             display: flex;
@@ -292,9 +276,7 @@
             cursor: pointer;
         }
 
-        .close-button:active {
-            transform: scale(.98);
-        }
+        .close-button:active { transform: scale(.98); }
 
         .footer {
             text-align: center;
@@ -321,9 +303,7 @@
         <div class="avatar">🏙️</div>
     </div>
 
-    <h1 class="welcome" id="greeting">
-        Построй свою империю
-    </h1>
+    <h1 class="welcome" id="greeting">Построй свою империю</h1>
 
     <div class="subtitle">
         Твоя история. Твои решения. Твой бизнес.
@@ -333,7 +313,7 @@
         <div class="balance-label">ИГРОВОЙ БАЛАНС</div>
         <div class="balance-value" id="balance">Загрузка...</div>
         <div class="balance-note" id="balance-note">
-            Получаем данные твоего аккаунта
+            Получаем данные аккаунта
         </div>
     </div>
 
@@ -355,54 +335,42 @@
         <div class="card">
             <div class="card-icon">💼</div>
             <div class="card-title">Карьера</div>
-            <div class="card-description">
-                Работай и получай зарплату
-            </div>
+            <div class="card-description">Работай и получай зарплату</div>
             <div class="status">РАЗВИВАЙСЯ</div>
         </div>
 
         <div class="card">
             <div class="card-icon">🏢</div>
             <div class="card-title">Бизнес</div>
-            <div class="card-description">
-                Покупай предприятия
-            </div>
+            <div class="card-description">Покупай предприятия</div>
             <div class="status">ИНВЕСТИРУЙ</div>
         </div>
 
         <div class="card">
             <div class="card-icon">🚘</div>
             <div class="card-title">Автопарк</div>
-            <div class="card-description">
-                Собирай коллекцию машин
-            </div>
+            <div class="card-description">Собирай коллекцию машин</div>
             <div class="status">КОЛЛЕКЦИЯ</div>
         </div>
 
         <div class="card">
             <div class="card-icon">🏠</div>
             <div class="card-title">Недвижимость</div>
-            <div class="card-description">
-                Приобретай новые владения
-            </div>
+            <div class="card-description">Приобретай новые владения</div>
             <div class="status">СОБСТВЕННОСТЬ</div>
         </div>
 
         <div class="card">
             <div class="card-icon">🏦</div>
             <div class="card-title">Банк</div>
-            <div class="card-description">
-                Управляй игровыми средствами
-            </div>
+            <div class="card-description">Управляй игровыми средствами</div>
             <div class="status">ФИНАНСЫ</div>
         </div>
 
         <div class="card">
             <div class="card-icon">🏆</div>
             <div class="card-title">Рейтинг</div>
-            <div class="card-description">
-                Поднимайся в таблице игроков
-            </div>
+            <div class="card-description">Поднимайся в таблице игроков</div>
             <div class="status">ЛИДЕРСТВО</div>
         </div>
     </div>
@@ -418,9 +386,8 @@
     </div>
 
     <div class="info">
-        Твои игровые данные загружаются с сервера BUSINESS LIFE.
-        Баланс и рейтинг синхронизируются с базой данных.
-        Игровые действия пока доступны через Telegram-бота.
+        Данные профиля и рейтинг загружаются с сервера BUSINESS LIFE.
+        Работа, покупки и управление имуществом пока доступны через Telegram-бота.
     </div>
 
     <button class="close-button" id="close">
@@ -435,14 +402,13 @@
 
 <script>
     const API_BASE = "https://business-life-api.onrender.com";
-
     const tg = window.Telegram?.WebApp;
 
-    const elements = {
+    const el = {
         greeting: document.getElementById("greeting"),
         balance: document.getElementById("balance"),
         balanceNote: document.getElementById("balance-note"),
-        bankBalance: document.getElementById("bank-balance"),
+        bank: document.getElementById("bank-balance"),
         reputation: document.getElementById("reputation"),
         leaderboard: document.getElementById("leaderboard"),
         connection: document.getElementById("connection"),
@@ -452,9 +418,7 @@
     function formatMoney(value) {
         const number = Number(value ?? 0);
 
-        if (!Number.isFinite(number)) {
-            return "0";
-        }
+        if (!Number.isFinite(number)) return "0";
 
         return new Intl.NumberFormat("ru-RU", {
             maximumFractionDigits: 0
@@ -462,25 +426,44 @@
     }
 
     function setConnection(message, type = "") {
-        elements.connection.textContent = message;
-        elements.connection.className = "connection " + type;
+        el.connection.textContent = message;
+        el.connection.className = "connection " + type;
+    }
+
+    async function apiRequest(path, initData) {
+        const response = await fetch(API_BASE + path, {
+            method: "GET",
+            headers: {
+                "X-Telegram-Init-Data": initData
+            }
+        });
+
+        if (!response.ok) {
+            if (response.status === 401) {
+                throw new Error(
+                    "Не удалось подтвердить Telegram-аккаунт. Закрой и снова открой приложение через бота."
+                );
+            }
+
+            if (response.status === 403) {
+                throw new Error("Доступ к аккаунту ограничен.");
+            }
+
+            throw new Error("Ошибка сервера: " + response.status);
+        }
+
+        return response.json();
     }
 
     function showProfile(user) {
-        elements.greeting.textContent =
+        el.greeting.textContent =
             "Привет, " + (user.first_name || "игрок") + "!";
 
-        elements.balance.textContent =
-            formatMoney(user.balance);
+        el.balance.textContent = formatMoney(user.balance);
+        el.balanceNote.textContent = "Твои игровые средства";
 
-        elements.balanceNote.textContent =
-            "Твои игровые средства";
-
-        elements.bankBalance.textContent =
-            formatMoney(user.bank_balance);
-
-        elements.reputation.textContent =
-            formatMoney(user.reputation);
+        el.bank.textContent = formatMoney(user.bank_balance);
+        el.reputation.textContent = formatMoney(user.reputation);
     }
 
     function showLeaderboard(data) {
@@ -489,12 +472,12 @@
             : data.leaderboard || data.players || data.items || [];
 
         if (!players.length) {
-            elements.leaderboard.innerHTML =
+            el.leaderboard.innerHTML =
                 '<div class="empty">Пока нет игроков в рейтинге</div>';
             return;
         }
 
-        elements.leaderboard.innerHTML = "";
+        el.leaderboard.replaceChildren();
 
         players.slice(0, 10).forEach((player, index) => {
             const row = document.createElement("div");
@@ -513,44 +496,13 @@
 
             const money = document.createElement("div");
             money.className = "player-money";
-            money.textContent = formatMoney(
-                player.total ?? player.balance ?? 0
-            ) + " ₽";
+            money.textContent =
+                formatMoney(player.total ?? player.balance ?? 0) + " ₽";
 
             left.append(place, name);
             row.append(left, money);
-
-            elements.leaderboard.appendChild(row);
+            el.leaderboard.appendChild(row);
         });
-    }
-
-    async function apiRequest(path, initData) {
-        const response = await fetch(API_BASE + path, {
-            method: "GET",
-            headers: {
-                "X-Telegram-Init-Data": initData
-            }
-        });
-
-        if (!response.ok) {
-            if (response.status === 401) {
-                throw new Error(
-                    "Не удалось подтвердить Telegram-аккаунт. Закрой и заново открой приложение через бота."
-                );
-            }
-
-            if (response.status === 403) {
-                throw new Error(
-                    "Доступ к аккаунту ограничен."
-                );
-            }
-
-            throw new Error(
-                "Ошибка сервера: " + response.status
-            );
-        }
-
-        return await response.json();
     }
 
     async function loadApp() {
@@ -559,23 +511,16 @@
                 "Открой Mini App через Telegram-бота, чтобы авторизоваться.",
                 "error"
             );
-
-            elements.balance.textContent = "—";
-            elements.balanceNote.textContent = "Нет подключения к Telegram";
-
+            el.balance.textContent = "—";
+            el.balanceNote.textContent = "Нет подключения к Telegram";
             return;
         }
 
         tg.ready();
         tg.expand();
 
-        if (tg.setHeaderColor) {
-            tg.setHeaderColor("#0b101b");
-        }
-
-        if (tg.setBackgroundColor) {
-            tg.setBackgroundColor("#0b101b");
-        }
+        if (tg.setHeaderColor) tg.setHeaderColor("#0b101b");
+        if (tg.setBackgroundColor) tg.setBackgroundColor("#0b101b");
 
         const initData = tg.initData;
 
@@ -584,38 +529,32 @@
                 "Telegram не передал данные авторизации. Открой приложение через кнопку бота.",
                 "error"
             );
-
-            elements.balance.textContent = "—";
-            elements.balanceNote.textContent = "Нет данных авторизации";
-
+            el.balance.textContent = "—";
+            el.balanceNote.textContent = "Нет данных авторизации";
             return;
         }
 
         setConnection("Подключаемся к серверу...", "loading");
 
         try {
-            const userData = await apiRequest("/api/me", initData);
-            const user = userData.user || userData;
+            const profileData = await apiRequest("/api/me", initData);
+            const user = profileData.user || profileData;
 
             showProfile(user);
 
             setConnection(
-                "Подключение установлено. Данные аккаунта загружены.",
-                ""
+                "Подключение установлено. Данные аккаунта загружены."
             );
 
             try {
-                const leaderboardData = await apiRequest(
-                    "/api/leaderboard",
-                    initData
-                );
+                const leaderboardData =
+                    await apiRequest("/api/leaderboard", initData);
 
                 showLeaderboard(leaderboardData);
             } catch (error) {
-                elements.leaderboard.innerHTML =
-                    '<div class="empty">Не удалось загрузить рейтинг. Попробуй позже.</div>';
-
                 console.error("Ошибка рейтинга:", error);
+                el.leaderboard.innerHTML =
+                    '<div class="empty">Не удалось загрузить рейтинг. Попробуй позже.</div>';
             }
 
         } catch (error) {
@@ -623,19 +562,16 @@
 
             setConnection(error.message, "error");
 
-            elements.balance.textContent = "—";
-            elements.balanceNote.textContent = "Не удалось загрузить баланс";
-            elements.bankBalance.textContent = "—";
-            elements.reputation.textContent = "—";
+            el.balance.textContent = "—";
+            el.balanceNote.textContent = "Не удалось загрузить баланс";
+            el.bank.textContent = "—";
+            el.reputation.textContent = "—";
         }
     }
 
-    elements.close.addEventListener("click", () => {
-        if (tg) {
-            tg.close();
-        } else {
-            window.history.back();
-        }
+    el.close.addEventListener("click", () => {
+        if (tg) tg.close();
+        else window.history.back();
     });
 
     loadApp();
